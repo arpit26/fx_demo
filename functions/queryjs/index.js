@@ -14,7 +14,14 @@
 export default async function (event, context, logger) {
     logger.info(`Invoking Queryjs with payload ${JSON.stringify(event.data || {})}`);
 
-    const results = await context.org.dataApi.query('SELECT Id, Name FROM Account');
+    const accountName = event.data.accountName;
+
+    const results = await context.org.dataApi.create({
+        type = 'Account',
+        fields : {
+            Name : accountName;
+        }
+    });
 
     logger.info(JSON.stringify(results));
 
