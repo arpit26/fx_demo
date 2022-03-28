@@ -17,9 +17,9 @@ export default async function (event, context, logger) {
     const accountName = event.data.accountName;
 
     const results = await context.org.dataApi.create({
-        type = 'Account',
+        type : 'Account',
         fields : {
-            Name : accountName;
+            Name : accountName
         }
     });
 
