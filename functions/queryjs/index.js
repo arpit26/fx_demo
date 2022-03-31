@@ -24,6 +24,7 @@ export default async function (event, context, logger) {
     });
 
     logger.info(JSON.stringify(results));
+    logger.info(JSON.stringify("abc "+results));
 
     return results;
 }
