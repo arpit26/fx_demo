@@ -9,6 +9,7 @@ export default class UowDataTest extends LightningElement {
     @track lastName = '';
     @track accountName = '';
     @track subject = '';
+    @track description = '';
     @track nextpage = false;
 
 
@@ -24,10 +25,22 @@ export default class UowDataTest extends LightningElement {
     handleaccNameChange(event){
         this.accountName = event.target.value;
     }
+    handledespChange(event){
+        this.description = event.target.value;
+    }
+    
 
     handleSubmit(event) {
-        callFunction({firstName: this.firstName,lastName : this.lastName,accountName: this.accountName,subject : this.subject})
-        .then( this.nextpage = true )
+        callFunction({firstName: this.firstName,lastName : this.lastName,accountName: this.accountName,subject : this.subject, description : this.description})
+        .then( data => {
+            if(data === null){
+             console.log('data1234 ');
+            }
+            else {
+            this.nextpage = true;
+                 console.log('data1234 '+ data.accountId);
+            }
+        })
         .catch(error => {
             this.dispatchEvent(
                 new ShowToastEvent({

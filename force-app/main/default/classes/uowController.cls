@@ -1,7 +1,7 @@
 public with sharing class uowController {
     @AuraEnabled
-    public static void callFunction(String firstName , String lastName, String subject , String accountName){
-        wrappayload wrap = new wrappayload(firstName,lastName,subject,accountName );
+    public static string callFunction(String firstName , String lastName, String subject , String accountName, String description){
+        wrappayload wrap = new wrappayload(firstName,lastName,subject,accountName ,description );
         System.debug(JSON.serialize(wrap));
         string payload = JSON.serialize(wrap);
 
@@ -20,6 +20,7 @@ if (invocation.getStatus() == functions.FunctionInvocationStatus.ERROR) {
         System.debug('Error: UNKNOWN');
     }
 }
+return JSON.serialize(jsonResponse);
 
     }
 
@@ -28,13 +29,15 @@ if (invocation.getStatus() == functions.FunctionInvocationStatus.ERROR) {
         public String lastName {get; set;}
         public String subject {get; set;}
         public String accountName {get; set;}
+        public String description {get; set;}
  
         //This is the contructor method. When we create a new wrapAccount object we pass a Account that is set to the acc property. We also set the selected value to false
-        public wrappayload(String fname , String lname , String sub , String accname) {
+        public wrappayload(String fname , String lname , String sub , String accname , String desp) {
             firstName = fname;
             lastName = lname;
             subject = sub;
             accountName = accname;
+            description = desp;
         }
     }
 }
