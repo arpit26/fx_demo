@@ -15,10 +15,10 @@ export default async function (event, context, logger) {
   /*logger.info(
     `Invoking Batchtestjs with payload ${JSON.stringify(event.data || {})}`
   ); */
-
-  for (var i = 0; i < event.data.leangth; i++) {
+  const jsonrequest = JSON.parse(event.data.leangth);
+  for (var i = 0; i < jsonrequest; i++) {
     logger.info(
-      `Data Passed in the batch ${JSON.stringify(event.data[i].Name)}`
+      `Data Passed in the batch ${JSON.stringify(jsonrequest[i].Name)}`
     );
   }
   /*
