@@ -21,12 +21,12 @@ export default async function (event, context, logger) {
       `Data Passed in the batch ${JSON.stringify(event.data[i].Name)}`
     );
   }
-
+  /*
   const results = await context.org.dataApi.query(
     "SELECT Id, Name FROM Account"
   );
 
   logger.info(JSON.stringify(results));
 
-  return results;
+  return results; */
 }
