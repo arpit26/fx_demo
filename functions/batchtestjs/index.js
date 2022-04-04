@@ -29,7 +29,7 @@ export default async function (event, context, logger) {
   logger.info(JSON.stringify(results));
 
   return results; */
-  const accId = event.data.avvId;
+  const accId = event.data.accId;
 
   const results = await context.org.dataApi.create({
     type: "Contact",
