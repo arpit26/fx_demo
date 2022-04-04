@@ -14,14 +14,14 @@
 export default async function (event, context, logger) {
   /*logger.info(
     `Invoking Batchtestjs with payload ${JSON.stringify(event.data || {})}`
-  ); */
+  ); 
   const jsonrequest = JSON.parse(event.data.leangth);
   for (var i = 0; i < jsonrequest; i++) {
     logger.info(
       `Data Passed in the batch ${JSON.stringify(jsonrequest[i].Name)}`
     );
   }
-  /*
+  
   const results = await context.org.dataApi.query(
     "SELECT Id, Name FROM Account"
   );
@@ -29,4 +29,15 @@ export default async function (event, context, logger) {
   logger.info(JSON.stringify(results));
 
   return results; */
+  const accId = event.data.avvId;
+
+  const results = await context.org.dataApi.create({
+    type: "Contact",
+    fields: {
+      FirstName: payload.firstName,
+      LastName: payload.lastName,
+      AccountId: accId // Get the ReferenceId from previous operation
+    }
+  });
+  return results;
 }
