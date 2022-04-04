@@ -34,8 +34,8 @@ export default async function (event, context, logger) {
   const results = await context.org.dataApi.create({
     type: "Contact",
     fields: {
-      FirstName: payload.firstName,
-      LastName: payload.lastName,
+      FirstName: "test1",
+      LastName: "test2",
       AccountId: accId // Get the ReferenceId from previous operation
     }
   });
