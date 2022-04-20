@@ -12,7 +12,7 @@
  */
 
 export default async function (event, context, logger) {
-  const results = "";
+  var results;
   logger.info(
     `Invoking Batchtestjs with payload ${JSON.stringify(event.data || {})}`
   );
