@@ -28,6 +28,7 @@ export default async function (event, context, logger) {
     });
     resultss = resultss.concat(results);
   }
+
   logger.info(JSON.stringify(resultss));
-  return resultss;
+  return JSON.stringify(resultss);
 }
