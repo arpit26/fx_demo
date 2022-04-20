@@ -12,16 +12,13 @@
  */
 
 export default async function (event, context, logger) {
+  const results = "";
   logger.info(
     `Invoking Batchtestjs with payload ${JSON.stringify(event.data || {})}`
   );
   const jsonrequest = JSON.parse(event.data.length);
   for (var i = 0; i < jsonrequest; i++) {
-    logger.info(
-      `Data Passed in the batch ${JSON.stringify(event.data[i].Name)}`
-    );
-
-    const results = await context.org.dataApi.create({
+    results = await context.org.dataApi.create({
       type: "Contact",
       fields: {
         FirstName: event.data[i].Name,
@@ -30,23 +27,6 @@ export default async function (event, context, logger) {
       }
     });
   }
-  //const results = await context.org.dataApi.query(
-  //  "SELECT Id, Name FROM Account"
-  // );
-
   logger.info(JSON.stringify(results));
-
   return results;
-  /*
-  const accId = event.data.accId;
-
-  const results = await context.org.dataApi.create({
-    type: "Contact",
-    fields: {
-      FirstName: "test1",
-      LastName: "test2",
-      AccountId: accId // Get the ReferenceId from previous operation
-    }
-  }); */
-  // return results;
 }
