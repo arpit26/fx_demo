@@ -18,15 +18,15 @@ export default async function (event, context, logger) {
   const jsonrequest = JSON.parse(event.data.length);
   for (var i = 0; i < jsonrequest; i++) {
     logger.info(
-      `Data Passed in the batch ${JSON.stringify(jsonrequest[i].Name)}`
+      `Data Passed in the batch ${JSON.stringify(event.data[i].Name)}`
     );
 
     const results = await context.org.dataApi.create({
       type: "Contact",
       fields: {
-        FirstName: jsonrequest[i].Name,
+        FirstName: event.data[i].Name,
         LastName: "test2",
-        AccountId: jsonrequest[i].Id // Get the ReferenceId from previous operation
+        AccountId: event.data[i].Id // Get the ReferenceId from previous operation
       }
     });
   }
