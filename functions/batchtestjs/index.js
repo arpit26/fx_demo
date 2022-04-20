@@ -12,23 +12,32 @@
  */
 
 export default async function (event, context, logger) {
-  /*logger.info(
+  logger.info(
     `Invoking Batchtestjs with payload ${JSON.stringify(event.data || {})}`
-  ); 
-  const jsonrequest = JSON.parse(event.data.leangth);
+  );
+  const jsonrequest = JSON.parse(event.data.length);
   for (var i = 0; i < jsonrequest; i++) {
     logger.info(
       `Data Passed in the batch ${JSON.stringify(jsonrequest[i].Name)}`
     );
+
+    const results = await context.org.dataApi.create({
+      type: "Contact",
+      fields: {
+        FirstName: jsonrequest[i].Name,
+        LastName: "test2",
+        AccountId: jsonrequest[i].Id // Get the ReferenceId from previous operation
+      }
+    });
   }
-  
-  const results = await context.org.dataApi.query(
-    "SELECT Id, Name FROM Account"
-  );
+  //const results = await context.org.dataApi.query(
+  //  "SELECT Id, Name FROM Account"
+  // );
 
   logger.info(JSON.stringify(results));
 
-  return results; */
+  return results;
+  /*
   const accId = event.data.accId;
 
   const results = await context.org.dataApi.create({
@@ -38,6 +47,6 @@ export default async function (event, context, logger) {
       LastName: "test2",
       AccountId: accId // Get the ReferenceId from previous operation
     }
-  });
-  return results;
+  }); */
+  // return results;
 }
